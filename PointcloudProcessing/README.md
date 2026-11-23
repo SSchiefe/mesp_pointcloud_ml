@@ -78,9 +78,9 @@ as one JSON per molecule.
 ```bash
 python 02_process_point_cloud.py \
   --input-dir       processed/ \
-  --downsampled-dir downsampled_pointcloud_voxelsize10/ \
-  --features-dir    pointcloud_features_voxelsize10/ \
-  --voxel-size      10
+  --downsampled-dir downsampled_pointcloud/ \
+  --features-dir    pointcloud_features/ \
+  --voxel-size      1.0
 ```
 
 ### `03_calculate_3D_Zernike_descriptors.py`
@@ -90,7 +90,7 @@ molecule).
 
 ```bash
 python 03_calculate_3D_Zernike_descriptors.py \
-  --input-dir       downsampled_pointcloud_voxelsize10/ \
+  --input-dir       downsampled_pointcloud/ \
   --output-positive zernike_positive_ESP.csv \
   --output-negative zernike_negative_ESP.csv \
   --n-max           8
@@ -103,8 +103,8 @@ combined JSON.
 
 ```bash
 python 03_calculate_FastPointFeatureHistogram.py \
-  --input-dir   downsampled_pointcloud_voxelsize10/ \
-  --output-file fpfh_features_voxelsize10.json \
+  --input-dir   downsampled_pointcloud/ \
+  --output-file fpfh_features.json \
   --voxel-size  1
 ```
 
@@ -117,8 +117,8 @@ list of molecules that failed.
 
 ```bash
 python 03_calculate_FastPointFeatureHistogram_with_ESP.py \
-  --input-dir        downsampled_pointcloud_voxelsize10/ \
-  --output-file      fpfh_esp_features_voxelsize10.json \
+  --input-dir        downsampled_pointcloud/ \
+  --output-file      fpfh_esp_features.json \
   --failed-mols-file fpfh_esp_failed_mols.json \
   --voxel-size       1
 ```
@@ -132,8 +132,8 @@ list of molecules that failed.
 
 ```bash
 python 03_calculate_persistent_homology_features.py \
-  --input-dir        downsampled_pointcloud_voxelsize10/ \
-  --output-dir       tda_features_voxelsize10/ \
+  --input-dir        downsampled_pointcloud/ \
+  --output-dir       tda_features/ \
   --failed-mols-file tda_failed_mols.json \
   --scale-esp        # optional, see below
 ```
@@ -153,13 +153,13 @@ single-file layout produced by the FPFH scripts.
 ```bash
 # Geometric point-cloud features
 python combine_feature_jsons.py \
-  --input-dir   pointcloud_features_voxelsize10/ \
-  --output-file pointcloud_features_voxelsize10.json
+  --input-dir   pointcloud_features/ \
+  --output-file pointcloud_features.json
 
 # Persistent-homology features
 python combine_feature_jsons.py \
-  --input-dir   tda_features_voxelsize10/ \
-  --output-file tda_features_voxelsize10.json
+  --input-dir   tda_features/ \
+  --output-file tda_features.json
 ```
 
 Use `--full-key` if molecule IDs contain underscores and the full filename
