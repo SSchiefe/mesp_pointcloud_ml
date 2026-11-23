@@ -8,7 +8,6 @@ single scalar per molecule.
 All model scripts share the same data pipeline, training loop, grid search, and
 embedding extraction, which live in the [`pointcloud_gnn/`](pointcloud_gnn) package.
 Each model script only defines its **architecture** and its **hyperparameter grid**.
-Short descriptions of every architecture are in [MODELS.md](MODELS.md).
 
 ## Layout
 
@@ -38,20 +37,15 @@ Models/
   `torch-scatter`/`torch-cluster`), `numpy`, `pandas`, RDKit.
 - `e3nn` is additionally required for the equivariant models
   (`TFN_knn.py`, `TFN_radius_graph.py`, `TFN_attention.py`).
-- A CUDA GPU is used automatically when available, otherwise CPU.
-
-Activate the conda environment that has these installed (e.g. the GNN/`rdkit`
-environment) before running or before selecting the VS Code interpreter.
 
 ## Running a model
 
-Each script is self-contained and can be run either way:
+Each script is self-contained and can be run:
 
 ```bash
 python egnn_radius_graph.py
 ```
 
-or cell-by-cell in the VS Code Interactive Window (the files use `#%%` cells).
 Each script inserts its own directory on `sys.path`, so `from pointcloud_gnn import ...`
 resolves in both cases.
 
