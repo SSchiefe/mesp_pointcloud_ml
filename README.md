@@ -4,7 +4,7 @@ Code accompanying the manuscript:
 
 > **Molecular Electrostatic Potential Point Clouds as Representations for α1A-Adrenergic Receptor Binding Affinity Prediction**  
 > Sebastian Schieferdecker et al.  
-> *Journal of Chemical Information and Modeling* (submitted)
+
 
 This repository contains the computational workflows used to investigate molecular electrostatic potential (MESP) surface point clouds for ligand affinity prediction.
 
